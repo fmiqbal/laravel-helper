@@ -1,0 +1,169 @@
+<?php
+
+use Illuminate\Database\Query\Builder;
+
+/**
+ * array_key_exists() but for multiple keys
+ *
+ * @param array $keys
+ * @param array $arr
+ * @return bool
+ */
+function array_keys_exists(array $keys, array $arr)
+{
+    return ! array_diff_key(array_flip($keys), $arr);
+}
+
+/**
+ * Check if array is associative array
+ *
+ * @param array $arr
+ * @return bool
+ */
+function isAssoc(array $arr)
+{
+    if ([] === $arr) {
+        return false;
+    }
+
+    return array_keys($arr) !== range(0, count($arr) - 1);
+}
+
+/**
+ * Like dd() but more readable because it always convert to array
+ *
+ */
+function ddr()
+{
+    $args = func_get_args();
+    foreach ($args as $key => $arg) {
+        if ($arg instanceof Illuminate\Contracts\Support\Arrayable) {
+            $args[$key] = $arg->toArray();
+        }
+    }
+
+    dd(...$args);
+}
+
+/**
+ * Like ddr() but didnt die
+ *
+ * @param mixed ...$args
+ */
+function dr(...$args)
+{
+    foreach ($args as $key => $arg) {
+        if ($arg instanceof Illuminate\Contracts\Support\Arrayable) {
+            $args[$key] = $arg->toArray();
+        }
+    }
+
+    foreach ($args as $key => $x) {
+        \Symfony\Component\VarDumper\VarDumper::dump($x);
+    }
+}
+
+/**
+ * Rounding number up with default per
+ *
+ * @param $number
+ * @param int $per
+ * @return float|int
+ */
+function roundUp($number, $per = 500)
+{
+    return (ceil($number / $per) * $per);
+}
+
+/**
+ * Rounding number down with default per
+ *
+ * @param $number
+ * @param int $per
+ * @return float|int
+ */
+function roundDown($number, $per = 500)
+{
+    return (floor($number / $per) * $per);
+}
+
+/**
+ * Get Greater between the two, anything accepted as long as it can be compared
+ * using standard comparison (>,<,>=,<=)
+ *
+ * @param $first
+ * @param $second
+ * @param bool $equal
+ * @return mixed
+ */
+function gg($first, $second, $equal = false)
+{
+    $greater = $equal ? $first >= $second : $first > $second;
+
+    return $greater ? $first : $second;
+}
+
+/**
+ * Get Lesser between the two, anything accepted as long as it can be compared
+ * using standard comparison (>,<,>=,<=)
+ *
+ * @param $first
+ * @param $second
+ * @param bool $equal
+ * @return mixed
+ */
+function gl($first, $second, $equal = false)
+{
+    $lesser = $equal ? $first <= $second : $first < $second;
+
+    return $lesser ? $first : $second;
+}
+
+/**
+ * This will create toSql() like result but with all the binding already binded
+ * normal toSql() result = SELECT * FROM projects WHERE id = ? , [1]
+ * this function result = SELECT * FROM projects WHERE id = 1
+ *
+ * @param $builder
+ * @return string
+ */
+function bindSql(Builder $builder)
+{
+    $bindings = collect($builder->getBindings())
+        ->map(function ($item) {
+            return '\'' . $item . '\'';
+        })
+        ->toArray();
+
+    return Str::replaceArray('?', $bindings, $builder->toSql());
+}
+
+/**
+ * Check if string is JSON
+ *
+ * @param $string
+ * @return bool
+ */
+function isJson($string)
+{
+    json_decode($string, true);
+
+    return (json_last_error() === JSON_ERROR_NONE);
+}
+
+/**
+ * Insert something before specific key in an array
+ *
+ * @param array $array
+ * @param $key
+ * @param array $new
+ * @return array
+ */
+function arrayInsertBefore(array $array, $key, array $new)
+{
+    $keys = array_keys($array);
+    $pos = (int) array_search($key, $keys);
+
+    return array_merge(array_slice($array, 0, $pos), $new, array_slice($array, $pos));
+}
+

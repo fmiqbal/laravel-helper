@@ -1,0 +1,11 @@
+{
+    "name": "fikrimi/helper",
+    "description": "Yet Another Laravel Helper",
+    "authors": [
+        {
+            "name": "Fikri Muhammad Iqbal",
+            "email": "fikri.miqbal23@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
