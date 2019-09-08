@@ -1,6 +1,6 @@
 <?php
 
-namespace Fikrimi\Helper;
+namespace Fikrimi\LaravelHelper;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -24,10 +24,10 @@ class HelperServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        include __DIR__ . 'GeneralHelper.php';
-        include __DIR__ . 'ArbitraryHelper.php';
-        include __DIR__ . 'UrlHelper.php';
-        include __DIR__ . 'StringHelper.php';
-        include __DIR__ . 'FormHelper.php';
+        include __DIR__ . '/GeneralHelper.php';
+        include __DIR__ . '/ArbitraryHelper.php';
+        include __DIR__ . '/UrlHelper.php';
+        include __DIR__ . '/StringHelper.php';
+        include __DIR__ . '/FormHelper.php';
     }
 }

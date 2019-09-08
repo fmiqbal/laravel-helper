@@ -1,5 +1,5 @@
 {
-    "name": "fikrimi/helper",
+    "name": "fikrimi/laravel-helper",
     "description": "Yet Another Laravel Helper",
     "authors": [
         {
@@ -7,5 +7,20 @@
             "email": "fikri.miqbal23@gmail.com"
         }
     ],
-    "minimum-stability": "dev"
+    "require": {
+        "php": ">=7",
+        "illuminate/support": "^5.5|^6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fikrimi\\LaravelHelper\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fikrimi\\LaravelHelper\\HelperServiceProvider"
+            ]
+        }
+    }
 }
