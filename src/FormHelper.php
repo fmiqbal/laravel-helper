@@ -42,7 +42,7 @@ function fill($name, $object = null, $default = null)
  * @param null $default
  * @return string|null
  */
-function fillDate($name, $format, $object = null, $default = null)
+function fill_date($name, $format, $object = null, $default = null)
 {
     $return = null;
     if ($value = request($name)) {
@@ -81,7 +81,7 @@ function fillDate($name, $format, $object = null, $default = null)
  * @param null $default
  * @return string
  */
-function fillSelectMultiple($name, $value, array $object = null, $default = null)
+function fill_select_multiple($name, $value, array $object = null, $default = null)
 {
     if (old($name) !== null) {
         if (in_array((string) $value, old($name) ?: [], true)) {
@@ -103,7 +103,7 @@ function fillSelectMultiple($name, $value, array $object = null, $default = null
  * @param null $default
  * @return string
  */
-function fillSelect($name, $value, $object = null, $default = null)
+function fill_select($name, $value, $object = null, $default = null)
 {
     if (old($name) === (string) $value) {
         return 'selected';
@@ -134,7 +134,7 @@ function fillSelect($name, $value, $object = null, $default = null)
  * @param null $default
  * @return string
  */
-function fillCheckbox($name, $value, array $object = null, $default = null)
+function fill_checkbox($name, $value, array $object = null, $default = null)
 {
     if (old($name) !== null) {
         if (in_array((string) $value, old($name) ?: [], true)) {

@@ -7,7 +7,7 @@
  * @param array $additions Parameter to add (use associative array)
  * @return array
  */
-function withParameters($parameters = [], $additions = [])
+function with_param($parameters = [], $additions = [])
 {
     $temp = Arr::wrap($parameters);
 
@@ -32,7 +32,7 @@ function withParameters($parameters = [], $additions = [])
  * @param bool $secure
  * @return string
  */
-function qs_url($path = null, $qs = [], $secure = null)
+function qs_path($path = null, $qs = [], $secure = null)
 {
     $url = app('url')->to($path, $secure);
     if (count($qs)) {

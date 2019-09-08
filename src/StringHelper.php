@@ -7,7 +7,7 @@
  * @param null $delimiter
  * @return string
  */
-function toThousand($number, $delimiter = null)
+function to_thousand($number, $delimiter = null)
 {
     if ($delimiter !== null) {
         return number_format($number, 0, ',', $delimiter);
@@ -27,7 +27,7 @@ function toThousand($number, $delimiter = null)
  * @param $number
  * @return bool|string
  */
-function toHuman($number)
+function to_human($number)
 {
     // first strip any formatting;
     $number = (0 + str_replace(",", "", $number));
@@ -61,7 +61,7 @@ function toHuman($number)
  * @param bool $tebi Using TebiBytes (/1000 instead /1024)
  * @return string
  */
-function toBytes($bytes, $precision = 2, $tebi = false)
+function to_bytes($bytes, $precision = 2, $tebi = false)
 {
     $units = ['KB', 'MB', 'GB', 'TB'];
 
@@ -86,7 +86,7 @@ function toBytes($bytes, $precision = 2, $tebi = false)
  * @param $number
  * @return int
  */
-function cleanNumber($number)
+function clean_number($number)
 {
     return (int) preg_replace('/\D+/', '', $number);
 }
@@ -139,7 +139,7 @@ function createColumnsArray($end_column, $first_letters = '')
  * @param $num
  * @return mixed
  */
-function excelColumn($num)
+function excel_column($num)
 {
     if (! Cache::has('char_lists')) {
         Cache::forever('char_lists', createColumnsArray('ZZ'));
@@ -150,3 +150,15 @@ function excelColumn($num)
     return $alphabet[$num - 1];
 }
 
+/**
+ * Check if string is JSON
+ *
+ * @param $string
+ * @return bool
+ */
+function is_json($string)
+{
+    json_decode($string, true);
+
+    return (json_last_error() === JSON_ERROR_NONE);
+}

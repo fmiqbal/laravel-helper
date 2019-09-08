@@ -20,7 +20,7 @@ function array_keys_exists(array $keys, array $arr)
  * @param array $arr
  * @return bool
  */
-function isAssoc(array $arr)
+function is_assoc(array $arr)
 {
     if ([] === $arr) {
         return false;
@@ -70,7 +70,7 @@ function dr(...$args)
  * @param int $per
  * @return float|int
  */
-function roundUp($number, $per = 500)
+function round_up($number, $per = 500)
 {
     return (ceil($number / $per) * $per);
 }
@@ -82,7 +82,7 @@ function roundUp($number, $per = 500)
  * @param int $per
  * @return float|int
  */
-function roundDown($number, $per = 500)
+function round_down($number, $per = 500)
 {
     return (floor($number / $per) * $per);
 }
@@ -127,7 +127,7 @@ function gl($first, $second, $equal = false)
  * @param $builder
  * @return string
  */
-function bindSql(Builder $builder)
+function bind_sql(Builder $builder)
 {
     $bindings = collect($builder->getBindings())
         ->map(function ($item) {
@@ -139,19 +139,6 @@ function bindSql(Builder $builder)
 }
 
 /**
- * Check if string is JSON
- *
- * @param $string
- * @return bool
- */
-function isJson($string)
-{
-    json_decode($string, true);
-
-    return (json_last_error() === JSON_ERROR_NONE);
-}
-
-/**
  * Insert something before specific key in an array
  *
  * @param array $array
@@ -159,7 +146,7 @@ function isJson($string)
  * @param array $new
  * @return array
  */
-function arrayInsertBefore(array $array, $key, array $new)
+function array_insert_before(array $array, $key, array $new)
 {
     $keys = array_keys($array);
     $pos = (int) array_search($key, $keys);
