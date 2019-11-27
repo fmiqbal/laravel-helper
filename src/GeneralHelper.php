@@ -9,9 +9,11 @@ use Illuminate\Database\Query\Builder;
  * @param array $arr
  * @return bool
  */
-function array_keys_exists(array $keys, array $arr)
-{
-    return ! array_diff_key(array_flip($keys), $arr);
+if (! function_exists('array_keys_exists')) {
+    function array_keys_exists(array $keys, array $arr)
+    {
+        return ! array_diff_key(array_flip($keys), $arr);
+    }
 }
 
 /**
@@ -20,19 +22,23 @@ function array_keys_exists(array $keys, array $arr)
  * @param array $arr
  * @return bool
  */
-function is_assoc(array $arr)
-{
-    if ([] === $arr) {
-        return false;
-    }
+if (!function_exists('is_assoc')) {
+    function is_assoc(array $arr)
+    {
+        if ([] === $arr) {
+            return false;
+        }
 
-    return array_keys($arr) !== range(0, count($arr) - 1);
+        return array_keys($arr) !== range(0, count($arr) - 1);
+    }
 }
 
 /**
  * Like dd() but more readable because it always convert to array
  *
  */
+
+if (function_exists('ddr')) {
 function ddr()
 {
     $args = func_get_args();
@@ -44,12 +50,14 @@ function ddr()
 
     dd(...$args);
 }
-
+}
 /**
  * Like ddr() but didnt die
  *
  * @param mixed ...$args
  */
+
+if (function_exists('dr')) {
 function dr(...$args)
 {
     foreach ($args as $key => $arg) {
@@ -62,7 +70,7 @@ function dr(...$args)
         \Symfony\Component\VarDumper\VarDumper::dump($x);
     }
 }
-
+}
 /**
  * Rounding number up with default per
  *
@@ -70,11 +78,13 @@ function dr(...$args)
  * @param int $per
  * @return float|int
  */
+
+if (function_exists('round_up')) {
 function round_up($number, $per = 500)
 {
     return (ceil($number / $per) * $per);
 }
-
+}
 /**
  * Rounding number down with default per
  *
@@ -82,11 +92,13 @@ function round_up($number, $per = 500)
  * @param int $per
  * @return float|int
  */
+
+if (function_exists('round_down')) {
 function round_down($number, $per = 500)
 {
     return (floor($number / $per) * $per);
 }
-
+}
 /**
  * Get Greater between the two, anything accepted as long as it can be compared
  * using standard comparison (>,<,>=,<=)
@@ -96,13 +108,15 @@ function round_down($number, $per = 500)
  * @param bool $equal
  * @return mixed
  */
+
+if (function_exists('gg')) {
 function gg($first, $second, $equal = false)
 {
     $greater = $equal ? $first >= $second : $first > $second;
 
     return $greater ? $first : $second;
 }
-
+}
 /**
  * Get Lesser between the two, anything accepted as long as it can be compared
  * using standard comparison (>,<,>=,<=)
@@ -112,13 +126,15 @@ function gg($first, $second, $equal = false)
  * @param bool $equal
  * @return mixed
  */
+
+if (function_exists('gl')) {
 function gl($first, $second, $equal = false)
 {
     $lesser = $equal ? $first <= $second : $first < $second;
 
     return $lesser ? $first : $second;
 }
-
+}
 /**
  * This will create toSql() like result but with all the binding already binded
  * normal toSql() result = SELECT * FROM projects WHERE id = ? , [1]
@@ -127,6 +143,8 @@ function gl($first, $second, $equal = false)
  * @param $builder
  * @return string
  */
+
+if (function_exists('bind_sql')) {
 function bind_sql(Builder $builder)
 {
     $bindings = collect($builder->getBindings())
@@ -137,7 +155,7 @@ function bind_sql(Builder $builder)
 
     return Str::replaceArray('?', $bindings, $builder->toSql());
 }
-
+}
 /**
  * Insert something before specific key in an array
  *
@@ -146,6 +164,8 @@ function bind_sql(Builder $builder)
  * @param array $new
  * @return array
  */
+
+if (function_exists('array_insert_before')) {
 function array_insert_before(array $array, $key, array $new)
 {
     $keys = array_keys($array);
@@ -153,4 +173,4 @@ function array_insert_before(array $array, $key, array $new)
 
     return array_merge(array_slice($array, 0, $pos), $new, array_slice($array, $pos));
 }
-
+}

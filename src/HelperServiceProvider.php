@@ -24,10 +24,10 @@ class HelperServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        include __DIR__ . '/GeneralHelper.php';
-        include __DIR__ . '/ArbitraryHelper.php';
-        include __DIR__ . '/UrlHelper.php';
-        include __DIR__ . '/StringHelper.php';
-        include __DIR__ . '/FormHelper.php';
+        include_once __DIR__ . '/GeneralHelper.php';
+        include_once __DIR__ . '/ArbitraryHelper.php';
+        include_once __DIR__ . '/UrlHelper.php';
+        include_once __DIR__ . '/StringHelper.php';
+        include_once __DIR__ . '/FormHelper.php';
     }
 }
