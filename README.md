@@ -3,7 +3,7 @@
 This is my personal Laravel helper and decided to published it, hopefully
 one of them become useful for someone somewhere. You can use it as a whole or
 just use your own `HelperServiceProvider` and copy paste what you need.
-If you think any function you think redundant, stupid or unusable just issue it. 
+If you think any function you think redundant, stupid or unusable just issue it.
 
 It consists of 5 helper group.
 - [General](#general)
@@ -30,11 +30,11 @@ It validate multiple keys is exists on array. All of the keys should exists or i
 ```
 
 ### `is_assoc(array $arr)`
-Check if it is an associative array or not. 
+Check if it is an associative array or not.
 
 ```php
   ...
-    
+
   $second = [1, 2, 3, 4, 5];
 
   $third = [
@@ -56,9 +56,9 @@ Check if it is an associative array or not.
 ```
 
 ### `ddr()`
-"Debug and Die but Readable", like `dd()` but it always convert to array first. 
-So imagine dumping your model but it always `->toArray()` first so you can read it 
-like a normal human being and still have the perks of `dd()` like collapse and such. 
+"Debug and Die but Readable", like `dd()` but it always convert to array first.
+So imagine dumping your model but it always `->toArray()` first so you can read it
+like a normal human being and still have the perks of `dd()` like collapse and such.
 It works on every Arrayble thing (to convert to array) or anything beside it (like dd).
 
 ### `dr()`
@@ -66,67 +66,50 @@ Like `ddr()` above, but didn't die. so you could set up something like this
 
 ```php
   dr($param);
-  
+
   ...
   $param = x;
   ...
-  
+
   dr($param);
   // or ddr($param) to make it die
 ```
 
 ### `round_up($number, $per = 500)` and `round_down($number, $per = 500)`
-Ceil `$number` to its nearest `$per`, 
+Ceil `$number` to its nearest `$per`,
 I should've set the `$per` to be configurable, maybe next time.
 
 ```php
-  
+
   round_up(10200, 500); // 10500
   round_up(910, 900); // 990
-  
+
   round_down(10200, 500); // 10000
   round_down(910, 900); // 900
 ```
 
-
-### `gg($first, $second, $equal = false)` and `gl($first, $second, $equal = false)`
-"Get Greater" and "Get Lesser", compare two things and get the higher/lower value. 
-Anything that can be compared using `>`, `<`, `<=`, `>=`, can be compared using `gg`
-and `gl`. Passing the third param change the comparison to `<=` and `>=`
-
-```php
-   gg('a', 'z'); //a
-   gg(900, 500); //900
-   gg(\Carbon\Carbon::now(), \Carbon\Carbon::now()->addDay()); //obiously the Carbon::now
-
-   gl('a', 'z'); //z
-   gl(900, 500); //500
-   gl(\Carbon\Carbon::now(), \Carbon\Carbon::now()->addDay()); //obiously the Carbon::now()->addDay()
-
-```
-
 ### `bind_sql(Illuminate\Database\Query\Builder\Builder $builder)`
-This one is useful for debugging. Its like `->toSql()` but it will 
-bind all the required parameters. It need builder, so it must be 
+This one is useful for debugging. Its like `->toSql()` but it will
+bind all the required parameters. It need builder, so it must be
 before the query is executed (like before `->first()` or `->get()`).
 
 ```php
   User::select()
     ->where('id', 5)
     ->toSql();
-    
+
   // SELECT * FROM `users` where `id` = ?
-  
+
   $user = User::select()
     ->where('id', 5);
-  
+
   bind_sql($user);
-  
-    
+
+
   // SELECT * FROM `users` where `id` = 5
 ```
 
-But my true intention is actually using it for subquery, imagine you can 
+But my true intention is actually using it for subquery, imagine you can
 use the JOIN subquery but still having the advanted of query builder.
 
 ```php
@@ -157,11 +140,11 @@ Insert new element before `$key`
   $first = [
     'one', 'two', 'three',
   ];
-  
+
   array_insert_before($first, 1, [
     'one and half',
   ]);
-  
+
   // [
   // 'one',
   // 'one and half',

@@ -100,42 +100,6 @@ function round_down($number, $per = 500)
 }
 }
 /**
- * Get Greater between the two, anything accepted as long as it can be compared
- * using standard comparison (>,<,>=,<=)
- *
- * @param $first
- * @param $second
- * @param bool $equal
- * @return mixed
- */
-
-if (function_exists('gg')) {
-function gg($first, $second, $equal = false)
-{
-    $greater = $equal ? $first >= $second : $first > $second;
-
-    return $greater ? $first : $second;
-}
-}
-/**
- * Get Lesser between the two, anything accepted as long as it can be compared
- * using standard comparison (>,<,>=,<=)
- *
- * @param $first
- * @param $second
- * @param bool $equal
- * @return mixed
- */
-
-if (function_exists('gl')) {
-function gl($first, $second, $equal = false)
-{
-    $lesser = $equal ? $first <= $second : $first < $second;
-
-    return $lesser ? $first : $second;
-}
-}
-/**
  * This will create toSql() like result but with all the binding already binded
  * normal toSql() result = SELECT * FROM projects WHERE id = ? , [1]
  * this function result = SELECT * FROM projects WHERE id = 1
