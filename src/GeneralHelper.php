@@ -38,7 +38,7 @@ if (!function_exists('is_assoc')) {
  *
  */
 
-if (function_exists('ddr')) {
+if (! function_exists('ddr')) {
 function ddr()
 {
     $args = func_get_args();
@@ -57,7 +57,7 @@ function ddr()
  * @param mixed ...$args
  */
 
-if (function_exists('dr')) {
+if (! function_exists('dr')) {
 function dr(...$args)
 {
     foreach ($args as $key => $arg) {
@@ -79,7 +79,7 @@ function dr(...$args)
  * @return float|int
  */
 
-if (function_exists('round_up')) {
+if (! function_exists('round_up')) {
 function round_up($number, $per = 500)
 {
     return (ceil($number / $per) * $per);
@@ -93,7 +93,7 @@ function round_up($number, $per = 500)
  * @return float|int
  */
 
-if (function_exists('round_down')) {
+if (! function_exists('round_down')) {
 function round_down($number, $per = 500)
 {
     return (floor($number / $per) * $per);
@@ -108,7 +108,7 @@ function round_down($number, $per = 500)
  * @return string
  */
 
-if (function_exists('bind_sql')) {
+if (! function_exists('bind_sql')) {
 function bind_sql(Builder $builder)
 {
     $bindings = collect($builder->getBindings())
@@ -129,7 +129,7 @@ function bind_sql(Builder $builder)
  * @return array
  */
 
-if (function_exists('array_insert_before')) {
+if (! function_exists('array_insert_before')) {
 function array_insert_before(array $array, $key, array $new)
 {
     $keys = array_keys($array);
